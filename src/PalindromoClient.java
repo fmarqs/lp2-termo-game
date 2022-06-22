@@ -7,7 +7,7 @@ class PalindromoClient{
         DataInputStream din=new DataInputStream(s.getInputStream());
         DataOutputStream dout=new DataOutputStream(s.getOutputStream());
 
-        System.out.println("Enter the String: ");
+        System.out.println("Acerte a palavra sorteada: (Apenas letras MAIUSCULAS):");
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         String str="",str2="";
         while(!str.equals("stop")){
@@ -15,7 +15,7 @@ class PalindromoClient{
             dout.writeUTF(str);
             dout.flush();
             str2=din.readUTF();
-            System.out.println("Server says: "+str2);
+            System.out.println(str2);
         }
         dout.close();
         s.close();

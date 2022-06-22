@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.Random;
 
 public class IsPalindrome implements Runnable {
 
@@ -25,8 +26,62 @@ public class IsPalindrome implements Runnable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        String str="",str2="",b="teste", compara="";
+        String str="",str2="", compara="", message="";
+
+        LineNumberReader leitorLinhas = null;
+        try {
+            leitorLinhas = new LineNumberReader(new FileReader("BDP.txt"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            leitorLinhas.skip(Long.MAX_VALUE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        int quantPalavras = leitorLinhas.getLineNumber();
+        System.out.println(quantPalavras);
+        try {
+            leitorLinhas.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        String[] palavras = new String[quantPalavras];
+
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("BDP.txt"));
+            String linhaLida;
+            int linha = 0;
+            while(((linhaLida = br.readLine()) != null)){
+                        palavras[linha] = linhaLida;
+                        linha++;
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            br.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Random random = new Random();
+        int indiceSorteado = random.nextInt(quantPalavras);
+        String sorteada = palavras[indiceSorteado];
+        System.out.println(indiceSorteado);
+        System.out.println(sorteada);
+
+        message = "A palavra sorteada tem " + sorteada.length() + " letras";
+        try {
+            dout.writeUTF(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         while (!str.equals("stop")) {
             compara="";
@@ -35,8 +90,8 @@ public class IsPalindrome implements Runnable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            int n = str.length();
-            if (str.equals(b)) {
+            int n = sorteada.length();
+            if (str.equals(sorteada)) {
                 str2="Voce acertou!";
                 try {
                     dout.writeUTF(str2);
@@ -50,7 +105,9 @@ public class IsPalindrome implements Runnable {
                 }
             } else {
                 for (int i = 0; i < n; i++) {
-                    if(str.charAt(i) == b.charAt(i))
+                    if(str.equals(null))
+
+                    if(str.charAt(i) == sorteada.charAt(i))
                         compara = compara + str.charAt(i);
                     else
                         compara = compara + '_';

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/BancoDePalavras.txt" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/IsPalindrome.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/PalindromoClient.java" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/PalindromoServer.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/TermoGame.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/TermoGameClient.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/TermoGameServer.java" charset="ISO-8859-1" />
   </component>
 </project>
